@@ -32,6 +32,8 @@ for (let i = 10; i <= 20; i++){
 
 alert ("Reservaste con: " + barbero + "\n" + "El dia: " + dia + "\n" + "Hora: " + hora )
 
+alert ("Gracias por confiar en Pupi Barber")
+
 
 
 
