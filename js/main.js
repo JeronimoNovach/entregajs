@@ -84,6 +84,7 @@ if (carrito.totalProductos() > 0) {
     }
 
     // Total de productos
+    
     alert(`${carrito.listarProductos()}\nTotal a Pagar: $${carrito.sumaTotal()}`);
 } else {
     alert("No se encontraron Productos agregados en el Carrito!");
