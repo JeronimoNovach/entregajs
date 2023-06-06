@@ -1,48 +1,90 @@
-alert ("Bienvenido a Pupi Barber");
+class Changuito {
+    constructor() {
+        this.ropa = []
+    }
 
-//Solicitar barbero
+    agregarRopa(nombreRopa, precioRopa) {
+        this.ropa.push({id:this.generarId(), nombre:nombreRopa.toLocaleUpperCase(), precio:precioRopa});
+        console.log("Agregaste un Producto!");
+    }
 
-let barbero = 0;
+    eliminarRopa(id) {
+        this.productos = this.productos.filter(item => item.id != id);
+        console.log("Eliminaste un Producto!");
+    }
 
-while ((barbero != 1) && (barbero != 2) && (barbero != 3)) {
-    barbero = parseInt(prompt("Ingrese un barbero en numeros:" + "\n" + "1. Jero " + "\n" + "2. Giuse " + "\n" + "3. Victor "));
+    totalRopa() {
+        return this.ropa.length;
+    }
+
+    sumaTotal() {
+         let total = 0;
+        
+        this.ropa.forEach(item => {
+            total += item.precio; 
+        });
+
+        return total; 
+    }
+
+    generarId() {
+        let max = 0;
+
+        this.ropa.forEach(item => {
+            if (item.id > max) {
+                max = item.id;
+            }
+        });
+
+        return max + 1;
+    }
+
+    listarRopa() {
+        let contenido = "Productos agregados:\n\n";
+
+        this.ropa.forEach(item => {
+            contenido += `${item.id} - ${item.nombre} $${item.precio}\n` 
+        });
+
+        return contenido;
+    }
 }
 
-//Solicitar Dia
-let dia = prompt("Ingrese un dia: " + "\n" + "Lunes" + "\n" + "Martes" + "\n" + "Miercoles" + "\n" + "Jueves" + "\n" + "Viernes" + "\n" + "Sabado") .toUpperCase();
+let nombre = "";
+let precio = 0;
+const carrito = new Carrito();
 
-let diaError = false
-
-if ((dia === "LUNES" ) || (dia === "MARTES" ) || (dia === "MIERCOLES" ) || (dia === "JUEVES" ) || (dia === "VIERNES" ) || (dia === "SABADO" )) {
-    alert ("Reservaste el dia: " + dia);
-}else {
-    alert  (prompt("Dia incorrecto"))
-}
-
-//Solicitar Hora
-
-let hora = prompt("Ingrese un horario: " + "\n" + "De 10:00 a 20:00")
-
-for (let i = 10; i <= 20; i++){
-    if ( i== 10 ) {
+// Agrego productos
+while (nombre.toLocaleUpperCase() != "ESC") {
+    nombre = prompt("Ingrese el Nombre del Producto:\n(ESCRIBA ESC PARA SALIR)");
+    
+    if (nombre.toLocaleUpperCase() == "ESC") {
         break;
     }
-    alert (i);
+    
+    precio = parseFloat(prompt("Ingrese el Precio del Producto:"));
+    carrito.agregarProducto(nombre, precio);
 }
 
-alert ("Reservaste con: " + barbero + "\n" + "El dia: " + dia + "\n" + "Hora: " + hora )
+// Valido el chango
+if (carrito.totalProductos() > 0) {
+    let id;
 
-alert ("Gracias por confiar en Pupi Barber")
+    // Elimino Productos
+    while (id != 0) {
+        id = parseInt(prompt(carrito.listarProductos() + "\nIngrese el ID del Producto a Eliminar:\n(ESCRIBAR 0 PARA SALIR)"));
+        
+        if (id > 0) {
+            carrito.eliminarProducto(id);
+        }
+    
+        if (carrito.totalProductos() == 0) {
+            break;
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    // Total de productos
+    alert(`${carrito.listarProductos()}\nTotal a Pagar: $${carrito.sumaTotal()}`);
+} else {
+    alert("No se encontraron Productos agregados en el Carrito!");
+}
