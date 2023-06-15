@@ -52,7 +52,7 @@ class Changuito {
 
 let nombre = "";
 let precio = 0;
-const carrito = new Carrito();
+const carrito = new Changuito();
 
 // Agrego productos
 while (nombre.toLocaleUpperCase() != "ESC") {
