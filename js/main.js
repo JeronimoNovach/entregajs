@@ -9,7 +9,7 @@ class Changuito {
     }
 
     eliminarRopa(id) {
-        this.productos = this.productos.filter(item => item.id != id);
+        this.ropa = this.ropa.filter(item => item.id != id);
         console.log("Eliminaste un Producto!");
     }
 
@@ -52,7 +52,7 @@ class Changuito {
 
 let nombre = "";
 let precio = 0;
-const carrito = new Changuito();
+const changuito = new Changuito();
 
 // Agrego productos
 while (nombre.toLocaleUpperCase() != "ESC") {
@@ -63,29 +63,29 @@ while (nombre.toLocaleUpperCase() != "ESC") {
     }
     
     precio = parseFloat(prompt("Ingrese el Precio del Producto:"));
-    carrito.agregarProducto(nombre, precio);
+    changuito.agregarRopa(nombre, precio);
 }
 
 // Valido el chango
-if (Changuito.totalProductos() > 0) {
+if (changuito.totalRopa() > 0) {
     let id;
 
     // Elimino Productos
     while (id != 0) {
-        id = parseInt(prompt(Changuito.listarProductos() + "\nIngrese el ID del Producto a Eliminar:\n(ESCRIBAR 0 PARA SALIR)"));
+        id = parseInt(prompt(changuito.listarRopa() + "\nIngrese el ID del Producto a Eliminar:\n(ESCRIBA 0 PARA SALIR)"));
         
         if (id > 0) {
-            Changuito.eliminarProducto(id);
+            changuito.eliminarRopa(id);
         }
     
-        if (Changuito.totalProductos() == 0) {
+        if (changuito.totalRopa() == 0) {
             break;
         }
     }
 
     // Total de productos
     
-    alert(`${Changuito.listarProductos()}\nTotal a Pagar: $${Changuito.sumaTotal()}`);
+    alert(`${changuito.listarRopa()}\nTotal a Pagar: $${changuito.sumaTotal()}`);
 } else {
     alert("No se encontraron Productos agregados en el Carrito!");
 }
