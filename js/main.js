@@ -67,25 +67,25 @@ while (nombre.toLocaleUpperCase() != "ESC") {
 }
 
 // Valido el chango
-if (carrito.totalProductos() > 0) {
+if (Changuito.totalProductos() > 0) {
     let id;
 
     // Elimino Productos
     while (id != 0) {
-        id = parseInt(prompt(carrito.listarProductos() + "\nIngrese el ID del Producto a Eliminar:\n(ESCRIBAR 0 PARA SALIR)"));
+        id = parseInt(prompt(Changuito.listarProductos() + "\nIngrese el ID del Producto a Eliminar:\n(ESCRIBAR 0 PARA SALIR)"));
         
         if (id > 0) {
-            carrito.eliminarProducto(id);
+            Changuito.eliminarProducto(id);
         }
     
-        if (carrito.totalProductos() == 0) {
+        if (Changuito.totalProductos() == 0) {
             break;
         }
     }
 
     // Total de productos
     
-    alert(`${carrito.listarProductos()}\nTotal a Pagar: $${carrito.sumaTotal()}`);
+    alert(`${Changuito.listarProductos()}\nTotal a Pagar: $${Changuito.sumaTotal()}`);
 } else {
     alert("No se encontraron Productos agregados en el Carrito!");
 }
